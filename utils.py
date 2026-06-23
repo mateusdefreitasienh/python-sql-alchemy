@@ -16,7 +16,7 @@ def input_nome(msg):
             print("Necessario informar nome e sobrenome")
     return nome
 
-def input_int(msg, minimo=0, maximo=120):
+def input_int(msg, minimo, maximo):
     """
     Trata da captura de int em python
     Entrada: str da mensagem, minimo e maximo

@@ -12,7 +12,7 @@ class Usuario(Base):
     idade = Column(Integer)
 
     def __repr__(self):
-        return f"<Usuario(nome='{self.nome}', idade={self.idade})>"
+        return f"<Usuario(id={self.id}, nome='{self.nome}', idade={self.idade})>"
 
 
 class Produto(Base):
@@ -20,11 +20,12 @@ class Produto(Base):
     
     id = Column(Integer, primary_key=True)
     nome = Column(String(50), nullable=False)
-    codigo = Column(Integer)
-    valor = Column(Float)
+    valor = Column(Float, nullable=False)
+    quantidade = Column(Integer, nullable=False)
 
     def __repr__(self):
-        msg =  f"<Produto(nome='{self.nome}',"
-        msg += f"codigo={self.codigo}"
+        msg =  f"<Produto(id={self.id}"
+        msg += f"nome='{self.nome}',"
         msg += f"valor={self.valor})>"
+        msg += f"quantiade={self.quantidade}"
         return msg
