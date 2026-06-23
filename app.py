@@ -40,7 +40,7 @@ def atualizar_produto(nome):
     produto = buscar_por_nome(Produto, nome)
     if produto:
         produto.nome = input("Digite o nome do produto: ")
-        produto.preco = input_float("Digite o preco do produto: ")
+        produto.preco = input_float("Digite o preco do produto: ", 0)
         produto.quantidade = input_int("Digite a quantidade do produto: ", 0, 9999999)
         db.session.commit()
         print("Produto atualizado!")
@@ -55,8 +55,6 @@ def deletar(tabela, nome):
         print("Registro deletado!")
     else:
         print("Registro não encontrado")
-
-
 
 def menu_principal():
     msg = "\n========== Gestão de Usuários ==========\n"
@@ -78,15 +76,20 @@ def menu_principal():
     opcao = input(msg).upper()
     
     if opcao == "1":
-        nome = input_nome("Digite o nome autalizado: ")
+        nome = input_nome("Digite o nome completo do usuário: ")
         idade = input_int("Digite a idade do usuário: ",1 , 150)
         novo_usuario = Usuario(nome=nome, idade=idade)
         cadastrar(novo_usuario)
         print(f"\nUsuário Cadastrado!")
 
     if opcao == "2":
-        for usuario in listar_todos(Usuario):
-            print(usuario)
+        usuarios = listar_todos(Usuario)
+
+        if usuarios:
+            for usuario in usuarios:
+                print(usuario)
+        else:
+            print("Nenhum usuário cadastrado!")
     if opcao == "3":
         nome = input_nome("Digite o nome do usuário que deseja editar: ")
         atualizar_usuario(nome)
@@ -94,13 +97,26 @@ def menu_principal():
         nome = input_nome("Digite o nome do usuário que deseja deletar: ")
         deletar(Usuario, nome)
     if opcao == "5":
-        pass
+        nome = input("Digite o nome do produto: ")
+        preco = input_float("Digite o preço do produto: ",0)
+        quantidade = input_int("Digite a quantidade: ",1 , 999999999)
+        novo_produto = Produto(nome=nome, preco=preco, quantidade=quantidade)
+        cadastrar(novo_produto)
+        print(f"\nProduto Cadastrado!")
     if opcao == "6":
-        pass
+        produtos = listar_todos(Produto)
+
+        if produtos:
+            for produto in produtos:
+                print(produto)
+        else:
+            print("Nenhum produto cadastrado!")
     if opcao == "7":
-        pass
+        nome = input("Digite o nome do produto que deseja editar: ")
+        atualizar_produto(nome)
     if opcao == "8":
-        pass
+        nome = input("Digite o nome do produto que deseja deletar: ")
+        deletar(Produto, nome)
     if opcao == "0":
         exit()
 

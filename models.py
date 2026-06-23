@@ -24,8 +24,8 @@ class Produto(Base):
     quantidade = Column(Integer, nullable=False)
 
     def __repr__(self):
-        msg =  f"<Produto(id={self.id}"
-        msg += f"nome='{self.nome}',"
-        msg += f"preco={self.preco})>"
-        msg += f"quantiade={self.quantidade}"
+        msg =  f"<Produto(id={self.id}, "
+        msg += f"nome='{self.nome}', "
+        msg += f"preco={self.preco}, "
+        msg += f"quantiade={self.quantidade})>"
         return msg
