@@ -91,7 +91,8 @@ def menu_principal():
         nome = input_nome("Digite o nome do usuário que deseja editar: ")
         atualizar_usuario(nome)
     if opcao == "4":
-        pass
+        nome = input_nome("Digite o nome do usuário que deseja deletar: ")
+        deletar(Usuario, nome)
     if opcao == "5":
         pass
     if opcao == "6":
