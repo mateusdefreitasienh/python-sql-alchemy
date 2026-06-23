@@ -20,12 +20,12 @@ class Produto(Base):
     
     id = Column(Integer, primary_key=True)
     nome = Column(String(50), nullable=False)
-    valor = Column(Float, nullable=False)
+    preco = Column(Float, nullable=False)
     quantidade = Column(Integer, nullable=False)
 
     def __repr__(self):
         msg =  f"<Produto(id={self.id}"
         msg += f"nome='{self.nome}',"
-        msg += f"valor={self.valor})>"
+        msg += f"preco={self.preco})>"
         msg += f"quantiade={self.quantidade}"
         return msg

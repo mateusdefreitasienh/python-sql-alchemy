@@ -28,8 +28,8 @@ def atualizar_usuario(nome):
     """Método para atualizar o usuario, buscando por nome"""
     usuario = buscar_por_nome(Usuario, nome)
     if usuario:
-        usuario.nome = input_nome("Digite o nome completo do usuário: ")
-        usuario.idade = input_int("Digite a idade do usuário: ")
+        usuario.nome = input_nome("Digite o nome atualizado do usuário: ")
+        usuario.idade = input_int("Digite a idade atualizada do usuário: ",1, 150)
         db.session.commit()
         print("Usuário atualizado!")
     else:
@@ -40,7 +40,7 @@ def atualizar_produto(nome):
     produto = buscar_por_nome(Produto, nome)
     if produto:
         produto.nome = input("Digite o nome do produto: ")
-        produto.valor = input_float("Digite o valor do produto: ")
+        produto.preco = input_float("Digite o preco do produto: ")
         produto.quantidade = input_int("Digite a quantidade do produto: ", 0, 9999999)
         db.session.commit()
         print("Produto atualizado!")
@@ -59,7 +59,7 @@ def deletar(tabela, nome):
 
 
 def menu_principal():
-    msg = "========== Gestão de Usuários ==========\n"
+    msg = "\n========== Gestão de Usuários ==========\n"
     msg += "Digite '1' para cadastrar usuário\n"
     msg += "Digite '2' para listar todos os usuários \n"
     msg += "Digite '3' para atualizar um usuário\n"
@@ -78,8 +78,8 @@ def menu_principal():
     opcao = input(msg).upper()
     
     if opcao == "1":
-        nome = input_nome("Digite o nome completo do usuário: ")
-        idade = input_int("Digite a idade do usuário: ")
+        nome = input_nome("Digite o nome autalizado: ")
+        idade = input_int("Digite a idade do usuário: ",1 , 150)
         novo_usuario = Usuario(nome=nome, idade=idade)
         cadastrar(novo_usuario)
         print(f"\nUsuário Cadastrado!")
@@ -88,7 +88,8 @@ def menu_principal():
         for usuario in listar_todos(Usuario):
             print(usuario)
     if opcao == "3":
-        pass
+        nome = input_nome("Digite o nome do usuário que deseja editar: ")
+        atualizar_usuario(nome)
     if opcao == "4":
         pass
     if opcao == "5":
